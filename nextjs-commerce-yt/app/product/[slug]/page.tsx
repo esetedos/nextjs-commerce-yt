@@ -3,6 +3,7 @@ import { fullProduct } from "@/app/interface";
 import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
 import ImageGallery from "@/app/components/ImageGallery";
+import AddToBag from "@/app/components/AddToBag";
 
 async function getData(slug: string) {
   const query = `*[_type == "product" && slug.current == "${slug}"][0] {
@@ -77,7 +78,7 @@ export default async function ProductPge({
             </div>
 
             <div className="flex gap-2.5">
-              <Button>Add To Bag</Button>
+              <AddToBag name={data.name} description={data.description} price={data.price} currency={"USD"} image={data.images[0]} price_id={data._id} />
               <Button variant={"secondary"}>Checkout now</Button>
             </div>
 
