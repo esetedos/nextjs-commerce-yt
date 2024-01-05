@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const links = [
     { name: "Home", href: "/" },
@@ -42,6 +43,11 @@ export default function Navbar() {
                     </div>
                 ))}
                 </nav>
+                <div className="flex divide-x border-r sm:border-l">
+                    <Button className="flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-none">
+                    button
+                    </Button>
+                </div>
             </div>
         </header>
     )
