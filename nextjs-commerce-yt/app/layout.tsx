@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
 import CartProvider from "./components/Providers";
-import { ShoppingCart } from "lucide-react";
+import Navbar from "./components/Navbar";
 import ShoppingCartModal from "./components/ShoppingCartModal";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +25,6 @@ export default function RootLayout({
           <ShoppingCartModal />
           {children}
         </CartProvider>
-        {children}
       </body>
     </html>
   );

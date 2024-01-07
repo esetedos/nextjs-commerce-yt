@@ -1,26 +1,28 @@
-import { client } from "@/app/lib/sanity";
+import AddToBag from "@/app/components/AddToBag";
+// import CheckoutNow from "@/app/components/CheckoutNow";
+import ImageGallery from "@/app/components/ImageGallery";
 import { fullProduct } from "@/app/interface";
+import { client } from "@/app/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
-import ImageGallery from "@/app/components/ImageGallery";
-import AddToBag from "@/app/components/AddToBag";
 
 async function getData(slug: string) {
   const query = `*[_type == "product" && slug.current == "${slug}"][0] {
-          _id,
-            images,
-            price,
-            name,
-            description,
-            "slug": slug.current,
-            "categoryName": category->name,
-            price_id
-        }`;
+        _id,
+          images,
+          price,
+          name,
+          description,
+          "slug": slug.current,
+          "categoryName": category->name,
+          price_id
+      }`;
 
   const data = await client.fetch(query);
 
   return data;
 }
+
 export const dynamic = "force-dynamic";
 
 export default async function ProductPge({
@@ -78,8 +80,23 @@ export default async function ProductPge({
             </div>
 
             <div className="flex gap-2.5">
-              <AddToBag name={data.name} description={data.description} price={data.price} currency={"USD"} image={data.images[0]} price_id={data._id} />
-              <Button variant={"secondary"}>Checkout now</Button>
+              <AddToBag
+                currency="USD"
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                price_id={data.price_id}
+              />
+              {/* <CheckoutNow
+                currency="USD"
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                key={data._id}
+                price_id={data.price_id}
+              /> */}
             </div>
 
             <p className="mt-12 text-base text-gray-500 tracking-wide">
